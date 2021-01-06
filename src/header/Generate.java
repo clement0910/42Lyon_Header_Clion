@@ -1,10 +1,10 @@
-package fr.eywek.header;
+package header;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.openapi.vfs.VirtualFile;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,21 +20,21 @@ public class Generate extends AnAction
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         VirtualFile file = AnActionEvent.getData(VIRTUAL_FILE);
-        String filename = file.getName();
+        StringBuilder filename = new StringBuilder(file.getName());
         while (filename.length() < 51)
-            filename += ' ';
-        String user = "By: " + System.getenv("USER") + " " + "<" + System.getenv("USER") + "@student.42.fr>";
+            filename.append(' ');
+        StringBuilder user = new StringBuilder("By: " + System.getenv("USER") + " " + "<" + System.getenv("USER") + "@student.42lyon.fr>");
         while (user.length() < 47)
-            user += ' ';
-        String user2 = "by " + System.getenv("USER");
+            user.append(' ');
+        StringBuilder user2 = new StringBuilder("by " + System.getenv("USER"));
         while (user2.length() < 21)
-            user2 += ' ';
-        String user3 = "by " + System.getenv("USER");
+            user2.append(' ');
+        StringBuilder user3 = new StringBuilder("by " + System.getenv("USER"));
         while (user3.length() < 20)
-            user3 += ' ';
+            user3.append(' ');
         String startComment = "/*";
         String endComment = "*/";
-        if (filename.contains("Makefile"))
+        if (filename.toString().contains("Makefile"))
         {
             startComment = "#";
             endComment = "#";
