@@ -23,7 +23,7 @@ public class Generate extends AnAction
         StringBuilder filename = new StringBuilder(file.getName());
         while (filename.length() < 51)
             filename.append(' ');
-        StringBuilder user = new StringBuilder("By: " + System.getenv("USER") + " " + "<" + System.getenv("USER") + "@student.42.fr>");
+        StringBuilder user = new StringBuilder("By: " + System.getenv("USER") + " " + "<" + System.getenv("USER") + "@student.42lyon.fr>");
         while (user.length() < 47)
             user.append(' ');
         StringBuilder user2 = new StringBuilder("by " + System.getenv("USER"));
