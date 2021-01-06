@@ -42,9 +42,9 @@ public class Save implements ApplicationComponent {
                     user.append(' ');
                 String header;
                 if (filename.toString().contains("Makefile"))
-                    header = "#    Updated: " + dateFormat.format(date) + " " + user + "###   ########.fr        #\n";
+                    header = "#    Updated: " + dateFormat.format(date) + " " + user + "###   ########lyon.fr   #\n";
                 else
-                    header = "/*   Updated: " + dateFormat.format(date) + " " + user + "###   ########.fr       */\n";
+                    header = "/*   Updated: " + dateFormat.format(date) + " " + user + "###   ########lyon.fr   */\n";
 
                 Runnable runnable = new Runnable() {
                     @Override
