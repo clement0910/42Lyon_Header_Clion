@@ -1,4 +1,4 @@
-package fr.eywek.header;
+package header;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.components.ApplicationComponent;
@@ -24,11 +24,11 @@ public class Save implements ApplicationComponent {
         VirtualFileManager.getInstance().addVirtualFileListener(new VirtualFileListener() {
             public void contentsChanged(@NotNull VirtualFileEvent event) {
                 VirtualFile file = event.getFile();
-                String filename = file.getName();
+                StringBuilder filename = new StringBuilder(file.getName());
                 String extension = file.getExtension();
-                if (extension == null && !filename.contains("Makefile"))
+                if (extension == null && !filename.toString().contains("Makefile"))
                     return;
-                if (!filename.contains("Makefile") && !extension.equals("c") && !extension.equals("h"))
+                if (!filename.toString().contains("Makefile") && !extension.equals("c") && !extension.equals("h"))
                     return;
                 String start = FileDocumentManager.getInstance().getDocument(file).getText(new TextRange(0, 5));
                 if (!start.equals("/* **") && !start.equals("# ***"))
@@ -36,12 +36,12 @@ public class Save implements ApplicationComponent {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Date date = new Date();
                 while (filename.length() < 51)
-                    filename += ' ';
-                String user = "by " + System.getenv("USER");
+                    filename.append(' ');
+                StringBuilder user = new StringBuilder("by " + System.getenv("USER"));
                 while (user.length() < 20)
-                    user += ' ';
+                    user.append(' ');
                 String header;
-                if (filename.contains("Makefile"))
+                if (filename.toString().contains("Makefile"))
                     header = "#    Updated: " + dateFormat.format(date) + " " + user + "###   ########.fr        #\n";
                 else
                     header = "/*   Updated: " + dateFormat.format(date) + " " + user + "###   ########.fr       */\n";
